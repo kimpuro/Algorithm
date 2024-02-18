@@ -1,6 +1,6 @@
 # Algorithm Solutions
 
-This repository contains my collection of solutions for various algorithmic problems provided by [Baekjoon Online Judge](https://www.acmicpc.net/).
+This repository contains my collection of solutions for various algorithmic problems provided by [Baekjoon Online Judge](https://www.acmicpc.net/) and [programmers school](https://school.programmers.co.kr/).
 
 ## Language
 
