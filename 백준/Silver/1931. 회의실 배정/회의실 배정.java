@@ -1,16 +1,22 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int N = scanner.nextInt();
+        int N = Integer.parseInt(br.readLine());
         int[][] meetings = new int[N][2];
 
-        for(int i=0; i < N; i++) {
-            meetings[i][0] = scanner.nextInt();
-            meetings[i][1] = scanner.nextInt();
+        for(int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            meetings[i][0] = Integer.parseInt(st.nextToken());
+            meetings[i][1] = Integer.parseInt(st.nextToken());
         }
 
         Arrays.sort(meetings, (o1, o2) -> {
@@ -30,6 +36,7 @@ public class Main {
             }
         }
 
-        System.out.println(count);
+        bw.write(String.valueOf(count));
+        bw.flush();
     }
 }
