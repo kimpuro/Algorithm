@@ -1,0 +1,69 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
+public class Main {
+    static long[] honey;
+    static long[] sum;
+    static int n;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter pw = new PrintWriter(System.out);
+
+        n = Integer.parseInt(br.readLine());
+        honey = new long[n + 1];
+        sum = new long[n + 1];
+
+        String[] values = br.readLine().split(" ");
+        for(int i = 1; i <= n; i++) {
+            honey[i] = Long.parseLong(values[i - 1]);
+            sum[i] = sum[i - 1] + honey[i];
+        }
+
+        long max1 = bBT();
+        long max2 = tBB();
+        long max3 = bTB();
+        long max = Math.max(max1, max2);
+
+        pw.println(Math.max(max, max3));
+        pw.flush();
+    }
+
+    static long bBT() {
+        long max = 0;
+        for (int i = 2; i < n; i++) {
+            long leftBee = sum[n] - honey[1] - honey[i];
+            long rightBee = sum[n] - sum[i];
+            if (max < (leftBee + rightBee)) {
+                max = leftBee + rightBee;
+            }
+        }
+        return max;
+    }
+
+    static long tBB() {
+        long max = 0;
+        for (int i = 2; i < n; i++) {
+            long leftBee = sum[n - 1] - honey[i];
+            long rightBee = sum[i - 1];
+            if (max < leftBee + rightBee) {
+                max = leftBee + rightBee;
+            }
+        }
+        return max;
+    }
+
+    static long bTB() {
+        long max = 0;
+        for (int i = 2; i < n; i++) {
+            long leftBee = sum[i] - honey[1];
+            long rightBee = sum[n] - sum[i - 1] - honey[n];
+            if (max < leftBee + rightBee) {
+                max = leftBee + rightBee;
+            }
+        }
+        return max;
+    }
+}
