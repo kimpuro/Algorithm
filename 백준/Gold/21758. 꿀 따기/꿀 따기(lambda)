@@ -1,0 +1,46 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.function.Function;
+
+public class Main {
+    static long[] honey;
+    static long[] sum;
+    static int n;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter pw = new PrintWriter(System.out);
+
+        n = Integer.parseInt(br.readLine());
+        honey = new long[n + 1];
+        sum = new long[n + 1];
+
+        String[] values = br.readLine().split(" ");
+        for(int i = 1; i <= n; i++) {
+            honey[i] = Long.parseLong(values[i - 1]);
+            sum[i] = sum[i - 1] + honey[i];
+        }
+
+        long max1 = calculateMax((i) -> sum[n] - honey[1] - honey[i], (i) -> sum[n] - sum[i]);
+        long max2 = calculateMax((i) -> sum[n - 1] - honey[i], (i) -> sum[i - 1]);
+        long max3 = calculateMax((i) -> sum[i] - honey[1], (i) -> sum[n] - sum[i - 1] - honey[n]);
+
+        long max = Math.max(Math.max(max1, max2), max3);
+
+        pw.println(max);
+        pw.flush();
+    }
+
+    static long calculateMax(Function<Integer, Long> calcLeftBee, Function<Integer, Long> calcRightBee) {
+        long max = 0;
+        for (int i = 2; i < n; i++) {
+            long leftBee = calcLeftBee.apply(i);
+            long rightBee = calcRightBee.apply(i);
+            max = Math.max(max, leftBee + rightBee);
+        }
+        return max;
+    }
+}
