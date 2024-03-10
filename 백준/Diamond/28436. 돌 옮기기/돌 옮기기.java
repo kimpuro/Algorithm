@@ -1,4 +1,4 @@
-import java.util.*;
+import java.io.*;
 
 public class Main {
 
@@ -28,14 +28,13 @@ public class Main {
         return move > 0;
     }
 
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int T = input.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(input.readLine());
 
         while (T-- > 0) {
-            String s = input.next();
+            String s = input.readLine();
             System.out.println(solve(s) ? "WHITE" : "BLACK");
         }
-        input.close();
     }
 }
