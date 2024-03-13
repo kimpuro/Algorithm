@@ -1,7 +1,11 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.*;
 
 public class Main {
-
     static class SimpleFlow {
         private final int N;
         private final List<List<Integer>> G;
@@ -126,21 +130,28 @@ public class Main {
         return res;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int N = scanner.nextInt();
+        int N = Integer.parseInt(br.readLine());
 
         List<Integer> A = new ArrayList<>();
+        StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            A.add(scanner.nextInt());
+            A.add(Integer.parseInt(st.nextToken()));
         }
 
         List<Integer> ans = solve(A);
 
-        System.out.println(ans.size());
+        bw.write(ans.size() + "\n");
         for (int x : ans) {
-            System.out.print(1 + x + " ");
+            bw.write((1 + x) + " ");
         }
+
+        bw.flush();
+
+        br.close();
+        bw.close();
     }
 }
