@@ -4,7 +4,7 @@ This repository contains my collection of solutions for various algorithmic prob
 
 ## Language
 
-The solutions are coded using `C, Java, Rust`. Each solution contains its own `README.md` file describing the problem, my understanding, and the approach I used in coming up with the solution.
+The solutions are coded using `C`, `Java`, `Rust`. Each solution contains its own `README.md` file describing the problem, my understanding, and the approach I used in coming up with the solution.
 
 ## Note
 
