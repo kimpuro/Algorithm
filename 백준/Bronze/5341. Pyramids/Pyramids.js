@@ -5,8 +5,7 @@ const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
    input.forEach((el) => {
        if(el==="0") {
        }else {
-           let a=parseInt(el)
-           console.log(sum(a));
+           console.log(sum(el));
        }
     }
    )
